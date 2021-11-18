@@ -14,7 +14,7 @@ public interface IUserService {
 
 	void deleteUserById(int id) throws UserNotFoundException;
 
-	User geUserById(int userId) throws UserNotFoundException;
+	User getUserById(int userId) throws UserNotFoundException;
 
 	List<User> getAllUsers();
 

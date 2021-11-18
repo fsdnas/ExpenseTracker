@@ -4,7 +4,7 @@ public class Queries {
 	//Queries for user table
 	public static final String REGISTERQUERY = "INSERT INTO users(name, email, password) values(?, ?, ?)";
 	public static final String LOGINUSERQUERY = "SELECT * FROM users WHERE email = ? AND password = ?";
-	public static final String UPDATEUSERQUERY = "UPDATE users SET name = ?, email = ? WHERE userid = ?";
+	public static final String UPDATEUSERQUERY = "UPDATE users SET name = ? WHERE email = ?";
 	public static final String FINDUSERBYIDQUERY = "SELECT * FROM users WHERE userid=?";
 	public static final String FINDALLUSERSQUERY = "SELECT * FROM users";
 	
