@@ -11,20 +11,17 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public void registerUser(User user) {
-		// TODO Auto-generated method stub
 		userRepository.registerUser(user);
 	}
 
 	@Override
 	public void loginUser(User user) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		
+		userRepository.loginUser(user);
 	}
 
 	@Override
-	public void updateUser(String name, String email) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		
+	public void updateUser(String email, String name) throws UserNotFoundException {
+		userRepository.updateUser(email, name);
 	}
 
 	@Override
@@ -34,15 +31,14 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User geUserById(int userId) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public User getUserById(int userId) throws UserNotFoundException {
+		return userRepository.findUserById(userId);
 	}
 
 	@Override
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findAllUser();
 	}
 	
 }

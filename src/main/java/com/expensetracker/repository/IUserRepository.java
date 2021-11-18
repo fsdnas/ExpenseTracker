@@ -12,9 +12,9 @@ public interface IUserRepository {
 	void registerUser(User user);
 	void loginUser(User user) throws UserNotFoundException;
 	void updateUser(String name, String email)throws UserNotFoundException;
-	void findUserById(int userId)throws UserNotFoundException;
+	User findUserById(int userId)throws UserNotFoundException;
 	
 	
-	List<Expense> findAllUser();
+	List<User> findAllUser();
 	
 }
