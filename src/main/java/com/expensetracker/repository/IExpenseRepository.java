@@ -1,6 +1,8 @@
 package com.expensetracker.repository;
 
+
 import java.time.LocalDate;
+
 import java.util.List;
 
 import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
@@ -11,8 +13,8 @@ import com.expensetracker.model.User;
 public interface IExpenseRepository {
 
 	void addTransaction(Expense expense);
-
-	void updateTransaction(Expense expense);
+	void deleteTransaction(int  transactionId) throws ExpenseRecordNotFoundException;
+	void updateTransaction(int transactionId) throws ExpenseRecordNotFoundException;
 
 	List<Expense> findTransactionById(int transactionId) throws ExpenseRecordNotFoundException;
 

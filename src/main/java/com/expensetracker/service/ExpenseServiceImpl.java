@@ -1,6 +1,7 @@
 package com.expensetracker.service;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
@@ -19,14 +20,22 @@ public class ExpenseServiceImpl implements IExpenseService {
 
 	@Override
 	public void deleteTransaction(int transaction) {
-		// TODO Auto-generated method stub
+		try {
+			expenseRepository.deleteTransaction(transaction);
+		} catch (ExpenseRecordNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
-	public void updateTransaction(Expense expense) {
-		// TODO Auto-generated method stub
-
+	public void updateTransaction(int transactionId) {
+		try {
+			expenseRepository.updateTransaction(transactionId);
+		} catch (ExpenseRecordNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
@@ -37,8 +46,10 @@ public class ExpenseServiceImpl implements IExpenseService {
 
 	@Override
 	public List<Expense> getTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return expenseRepository.findTrnasactionByDate(date);
 	}
+
+	
 
 }
