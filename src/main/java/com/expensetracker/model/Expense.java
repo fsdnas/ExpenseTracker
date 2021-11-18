@@ -10,7 +10,7 @@ public class Expense {
 	private String modeOfTransaction;
 	private LocalDate date;
 	private double amount;
-	private int id;
+	private int transactionId;
 	
 	
 	public Expense() {
@@ -18,7 +18,7 @@ public class Expense {
 	}
 
 	public Expense(User user, String type, String category, String modeOfTransaction, LocalDate date, double amount,
-			int id) {
+			int transactionId) {
 		super();
 		this.user = user;
 		this.type = type;
@@ -26,13 +26,13 @@ public class Expense {
 		this.modeOfTransaction = modeOfTransaction;
 		this.date = date;
 		this.amount = amount;
-		this.id = id;
+		this.transactionId = transactionId;
 	}
 
 	@Override
 	public String toString() {
 		return "Expense [user=" + user + ", type=" + type + ", category=" + category + ", modeOfTransaction="
-				+ modeOfTransaction + ", date=" + date + ", amount=" + amount + ", id=" + id + "]";
+				+ modeOfTransaction + ", date=" + date + ", amount=" + amount + ", id=" + transactionId + "]";
 	}
 
 	public User getUser() {
@@ -84,11 +84,11 @@ public class Expense {
 	}
 
 	public int getId() {
-		return id;
+		return transactionId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.transactionId = id;
 	}
 
 }
