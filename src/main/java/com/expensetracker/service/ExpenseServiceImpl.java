@@ -1,16 +1,19 @@
 package com.expensetracker.service;
 
 import java.time.LocalDate;
+
 import java.util.List;
 
 import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
+import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.Expense;
+
 import com.expensetracker.repository.ExpenseRepositoryImpl;
 import com.expensetracker.repository.IExpenseRepository;
 
 public class ExpenseServiceImpl implements IExpenseService {
 	IExpenseRepository expenseRepository = new ExpenseRepositoryImpl();
-	
+
 	@Override
 	public void addTransaction(Expense expense) {
 		expenseRepository.addTransaction(expense);
@@ -19,25 +22,42 @@ public class ExpenseServiceImpl implements IExpenseService {
 
 	@Override
 	public void deleteTransaction(int transaction) {
-		// TODO Auto-generated method stub
+		try {
+			expenseRepository.deleteTransaction(transaction);
+		} catch (ExpenseRecordNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
-	public void updateTransaction(Expense expense) {
-		// TODO Auto-generated method stub
+	public void updateTransaction(int transactionId) {
+		try {
+			expenseRepository.updateTransaction(transactionId);
+		} catch (ExpenseRecordNotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public List<Expense> getTransactionById(int transaction) throws ExpenseRecordNotFoundException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Expense> getTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException {
-		// TODO Auto-generated method stub
+		return expenseRepository.findTransactionByDate(date);
+	}
+
+	@Override
+	public List<Expense> findTransactionByUser(int userId) throws UserNotFoundException {
+		return expenseRepository.findTransactionByUser(userId);
+	}
+
+	@Override
+	public List<Expense> findAllTransaction() {
+
 		return null;
 	}
 
