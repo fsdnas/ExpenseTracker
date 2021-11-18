@@ -3,7 +3,6 @@ package com.expensetracker.repository;
 import java.util.List;
 
 import com.expensetracker.exceptions.UserNotFoundException;
-
 import com.expensetracker.model.User;
 
 public interface IUserRepository {
