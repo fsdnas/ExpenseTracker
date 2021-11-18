@@ -10,14 +10,13 @@ import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.Expense;
 import com.expensetracker.model.User;
-import com.expensetracker.repository.ModelDAO;
 
 public class ExpenseRepositoryImpl implements IExpenseRepository {
 	static Connection connection;
-	
+
 	@Override
 	public void addTransaction(Expense expense) {
-		
+
 		connection = ModelDAO.openConnection();
 		PreparedStatement statement = null;
 		try {
@@ -25,14 +24,13 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement.setInt(1, expense.getId());
 			statement.setString(2, expense.getType());
 			statement.setString(3, expense.getCategory());
-			statement.setString(4,expense.getModeOfTransaction());
+			statement.setString(4, expense.getModeOfTransaction());
 			statement.setDouble(5, expense.getAmount());
 			statement.execute();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			if (statement != null) {
 
 				try {
@@ -46,13 +44,12 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		}
-		
+
 	}
 
 	@Override
 	public void updateTransaction(Expense expense) {
-		
-		
+
 	}
 
 	@Override
@@ -78,5 +75,5 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }
