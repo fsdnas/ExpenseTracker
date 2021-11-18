@@ -17,16 +17,13 @@ public class Expense {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Expense(User user, String type, String category, String modeOfTransaction, LocalDate date, double amount,
-			int transactionId) {
+	public Expense(User user, String type, String category, String modeOfTransaction,  double amount) {
 		super();
 		this.user = user;
 		this.type = type;
 		this.category = category;
 		this.modeOfTransaction = modeOfTransaction;
-		this.date = date;
 		this.amount = amount;
-		this.transactionId = transactionId;
 	}
 
 	@Override

@@ -5,12 +5,15 @@ import java.util.List;
 
 import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
 import com.expensetracker.model.Expense;
+import com.expensetracker.repository.ExpenseRepositoryImpl;
+import com.expensetracker.repository.IExpenseRepository;
 
 public class ExpenseServiceImpl implements IExpenseService {
-
+	IExpenseRepository expenseRepository = new ExpenseRepositoryImpl();
+	
 	@Override
 	public void addTransaction(Expense expense) {
-		// TODO Auto-generated method stub
+		expenseRepository.addTransaction(expense);
 
 	}
 

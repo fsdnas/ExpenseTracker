@@ -1,9 +1,10 @@
 package com.expensetracker.model;
 
 public class User {
+	private int userid;
 	private String name;
 	private String email;
-	
+	private String password;
 	
 	public User() {
 		super();
@@ -11,10 +12,12 @@ public class User {
 	}
 
 
-	public User(String name, String email) {
+	public User(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.password = password;
+		
 	}
 
 
@@ -41,6 +44,26 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", email=" + email + "]";
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public int getUserid() {
+		return userid;
+	}
+
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
 	
