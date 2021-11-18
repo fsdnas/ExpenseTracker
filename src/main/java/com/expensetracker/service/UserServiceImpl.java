@@ -4,13 +4,15 @@ import java.util.List;
 
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.User;
+import com.expensetracker.repository.UserRepositoryImpl;
 
 public class UserServiceImpl implements IUserService {
+	UserRepositoryImpl userRepository = new UserRepositoryImpl();
 
 	@Override
 	public void registerUser(User user) {
 		// TODO Auto-generated method stub
-		
+		userRepository.registerUser(user);
 	}
 
 	@Override
