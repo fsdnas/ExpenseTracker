@@ -12,6 +12,7 @@ import java.util.List;
 import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.Expense;
+import com.expensetracker.model.User;
 
 public class ExpenseRepositoryImpl implements IExpenseRepository {
 	static Connection connection;
@@ -110,8 +111,45 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 	@Override
 	public List<Expense> findTransactionById(int transactionId) throws ExpenseRecordNotFoundException {
+		PreparedStatement statement = null;
+		Expense expense = null;
+		Connection connection = ModelDAO.openConnection();
+		List<Expense> expenseList = new ArrayList<>();
+		try {
+			statement = connection.prepareStatement(Queries.FINDTRANSACTIONBYIDQUERY);
+			statement.setInt(3, transactionId);
+			ResultSet resultSet = null;
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				expense = new Expense();
+				expense.setAmount(resultSet.getDouble("amount"));
+				expense.setCategory(resultSet.getString("category"));
+				expense.setModeOfTransaction(resultSet.getString("ModeOfTransaction"));
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+				LocalDate foundDate = LocalDate.parse(resultSet.getString("date").split("\\s")[0], formatter);
+				expense.setDate(foundDate);
+				expenseList.add(expense);
 
-		return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				ModelDAO.closeConnection();
+			}
+		}
+		
+		if(expenseList.isEmpty()) {
+			throw new ExpenseRecordNotFoundException("please Enter valid transaction Id:");
+		}
+		return expenseList;
+
 	}
 
 	@Override
@@ -171,15 +209,14 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		Connection connection = ModelDAO.openConnection();
 		ResultSet resultSet = null;
 		List<Expense> expenseList = new ArrayList<>();
-		
+
 		try {
 			statement = connection.prepareStatement(Queries.FINDTRANSACTIONBYUSERQUERY);
 			statement.setInt(1, userId);
-			
-			
+
 			resultSet = statement.executeQuery();
 			Expense findTransaction = null;
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				findTransaction = new Expense();
 				findTransaction.setId(resultSet.getInt("userid"));
 				findTransaction.setType(resultSet.getString("type"));
@@ -207,18 +244,48 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		}
-		if(expenseList.isEmpty()) {
+		if (expenseList.isEmpty()) {
 			throw new UserNotFoundException("User not found, Please check user id ");
 		}
-		
-		
+
 		return expenseList;
 	}
 
 	@Override
 	public List<Expense> findAllTransaction() {
 
-		return null;
+		PreparedStatement statement = null;
+		Connection connection = ModelDAO.openConnection();
+		ResultSet resultset = null;
+		List<Expense> expenseList = new ArrayList<>();
+		try {
+			statement = connection.prepareStatement(Queries.FINDALLTRANSACTIONSQUERY);
+			resultset = statement.executeQuery();
+			while (resultset.next()) {
+				String type = resultset.getString("type");
+				String category = resultset.getString("category");
+				String modeOfTransaction = resultset.getString("modeOfTransaction");
+				double amount = resultset.getDouble("amount");
+				User user = new User();
+
+				Expense expense = new Expense(user, type, category, modeOfTransaction, amount);
+				expenseList.add(expense);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				ModelDAO.closeConnection();
+			}
+		}
+		return expenseList;
+
 	}
 
 }
