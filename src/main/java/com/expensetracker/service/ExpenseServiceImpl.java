@@ -57,7 +57,18 @@ public class ExpenseServiceImpl implements IExpenseService {
 
 	@Override
 	public List<Expense> findAllTransaction() {
+		return expenseRepository.findAllTransaction();
+	}
 
+	@Override
+	public List<Expense> getStatsByCategory(int userId) throws UserNotFoundException {
+		
+		return null;
+	}
+
+	@Override
+	public List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException {
+		
 		return null;
 	}
 

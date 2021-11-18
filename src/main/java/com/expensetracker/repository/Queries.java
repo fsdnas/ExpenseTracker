@@ -5,6 +5,7 @@ public class Queries {
 	public static final String REGISTERQUERY = "INSERT INTO users(name, email, password) values(?, ?, ?)";
 	public static final String LOGINUSERQUERY = "SELECT * FROM users WHERE email = ? AND password = ?";
 	public static final String UPDATEUSERQUERY = "UPDATE users SET name = ? WHERE email = ?";
+	public static final String DELETEUSERQUERY = "DELETE FROM users where userid = ?";
 	public static final String FINDUSERBYIDQUERY = "SELECT * FROM users WHERE userid=?";
 	public static final String FINDALLUSERSQUERY = "SELECT * FROM users";
 	
@@ -20,7 +21,8 @@ public class Queries {
 	
 	//-----------------------------------------------------------------------------
 	
+	//give userId two times for filtering
 	
-	
-	
+	public static final String CATEGORYSTATSQUERY = "select distinct category,amount,ROUND(amount/(select SUM(amount) from expense where userid = ?)*100,2) as percentage from expense where userid = ?";
+	public static final String MODEOFTRANSACTIONSTATSQUERY = "select distinct modeoftransaction,amount,ROUND(amount/(select SUM(amount) from expense where userid = ?)*100,2) as percentage from expense where userid = ?";
 }

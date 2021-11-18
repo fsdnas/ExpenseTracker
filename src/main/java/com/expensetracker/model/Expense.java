@@ -11,6 +11,7 @@ public class Expense {
 	private LocalDate date;
 	private double amount;
 	private int transactionId;
+	private float percentage;
 	
 	
 	public Expense() {
@@ -31,6 +32,7 @@ public class Expense {
 		return "Expense [user=" + user + ", type=" + type + ", category=" + category + ", modeOfTransaction="
 				+ modeOfTransaction + ", date=" + date + ", amount=" + amount + ", id=" + transactionId + "]";
 	}
+	
 
 	public User getUser() {
 		return user;
@@ -86,6 +88,14 @@ public class Expense {
 
 	public void setId(int id) {
 		this.transactionId = id;
+	}
+
+	public void setPercentage(float percentage) {
+		this.percentage = percentage;
+		
+	}
+	public float getPercentage() {
+		return percentage;
 	}
 
 }

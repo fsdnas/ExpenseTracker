@@ -43,9 +43,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 					e.printStackTrace();
 				}
 
-				ModelDAO.closeConnection();
 			}
-
+			ModelDAO.closeConnection();
 		}
 
 	}
@@ -73,8 +72,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 					e.printStackTrace();
 				}
 
-				ModelDAO.closeConnection();
 			}
+			ModelDAO.closeConnection();
 
 		}
 	}
@@ -102,8 +101,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 					e.printStackTrace();
 				}
 
-				ModelDAO.closeConnection();
 			}
+			ModelDAO.closeConnection();
 
 		}
 
@@ -117,7 +116,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		List<Expense> expenseList = new ArrayList<>();
 		try {
 			statement = connection.prepareStatement(Queries.FINDTRANSACTIONBYIDQUERY);
-			statement.setInt(3, transactionId);
+			statement.setInt(1, transactionId);
 			ResultSet resultSet = null;
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -132,7 +131,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
@@ -141,11 +139,12 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-				ModelDAO.closeConnection();
+
 			}
+			ModelDAO.closeConnection();
 		}
-		
-		if(expenseList.isEmpty()) {
+
+		if (expenseList.isEmpty()) {
 			throw new ExpenseRecordNotFoundException("please Enter valid transaction Id:");
 		}
 		return expenseList;
@@ -181,7 +180,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
@@ -192,8 +190,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 					e.printStackTrace();
 				}
 
-				ModelDAO.closeConnection();
 			}
+			ModelDAO.closeConnection();
 
 		}
 
@@ -225,6 +223,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				LocalDate foundDate = LocalDate.parse(resultSet.getString("date").split("\\s")[0], formatter);
 				findTransaction.setDate(foundDate);
+				expenseList.add(findTransaction);
 			}
 
 		} catch (Exception e) {
@@ -240,8 +239,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 					e.printStackTrace();
 				}
 
-				ModelDAO.closeConnection();
 			}
+			ModelDAO.closeConnection();
 
 		}
 		if (expenseList.isEmpty()) {
@@ -272,7 +271,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				expenseList.add(expense);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
@@ -281,11 +279,63 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-				ModelDAO.closeConnection();
+
 			}
+			ModelDAO.closeConnection();
 		}
 		return expenseList;
 
+	}
+
+	@Override
+	public List<Expense> getStatsByCategory(int userId) throws UserNotFoundException {
+		PreparedStatement statement = null;
+		Connection connection = ModelDAO.openConnection();
+		ResultSet resultSet = null;
+		List<Expense> expenseList = new ArrayList<>();
+
+		try {
+			statement = connection.prepareStatement(Queries.CATEGORYSTATSQUERY);
+			statement.setInt(1, userId);
+			statement.setInt(2, userId);
+			resultSet = statement.executeQuery();
+			Expense categoryStats = null;
+			while (resultSet.next()) {
+				categoryStats = new Expense();
+				categoryStats.setCategory(resultSet.getString("category"));
+				categoryStats.setAmount(resultSet.getDouble("amount"));
+				categoryStats.setPercentage(resultSet.getFloat("percentage"));
+				expenseList.add(categoryStats);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally {
+			if (statement != null) {
+
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			}
+			ModelDAO.closeConnection();
+
+		}
+		if (expenseList.isEmpty()) {
+			throw new UserNotFoundException("User not found, Please check user id ");
+		}
+
+		return expenseList;
+	}
+
+	@Override
+	public List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException {
+
+		return null;
 	}
 
 }

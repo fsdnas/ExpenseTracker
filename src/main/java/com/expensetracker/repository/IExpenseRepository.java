@@ -24,4 +24,6 @@ public interface IExpenseRepository {
 
 	List<Expense> findAllTransaction();
 
+	List<Expense> getStatsByCategory(int userId) throws UserNotFoundException;
+	List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException;
 }

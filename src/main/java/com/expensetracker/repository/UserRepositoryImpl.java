@@ -88,7 +88,6 @@ public class UserRepositoryImpl implements IUserRepository {
 			statement = connection.prepareStatement(Queries.UPDATEUSERQUERY);
 			statement.setString(1, name);
 			statement.setString(2, email);
-
 			int updateCount = statement.executeUpdate();
 
 			if (updateCount == 0) {
@@ -168,14 +167,12 @@ public class UserRepositoryImpl implements IUserRepository {
 				users.add(user);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
