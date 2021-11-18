@@ -32,9 +32,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-
-		finally {
+		} finally {
 			if (statement != null) {
 
 				try {
@@ -58,14 +56,15 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement = connection.prepareStatement(Queries.UPDATETRANSACTIONQUERY);
 			statement.setInt(1, transactionId);
 			int count = statement.executeUpdate();
+
 			if (count == 0) {
-				throw new ExpenseRecordNotFoundException("TransactionId not found, Please check the id and try");
+				throw new ExpenseRecordNotFoundException("TransactionId not found, Please check the id and try again");
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
-
 				try {
 					statement.close();
 				} catch (SQLException e) {
@@ -87,6 +86,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement = connection.prepareStatement(Queries.DELETETRANSACTIONQUERY);
 			statement.setInt(1, transactionId);
 			int count = statement.executeUpdate();
+
 			if (count == 0) {
 				throw new ExpenseRecordNotFoundException("Transaction Id  not found, Please check the id and try");
 			}
@@ -94,7 +94,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
-
 				try {
 					statement.close();
 				} catch (SQLException e) {
@@ -139,7 +138,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-
 			}
 			ModelDAO.closeConnection();
 		}
@@ -148,7 +146,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			throw new ExpenseRecordNotFoundException("please Enter valid transaction Id:");
 		}
 		return expenseList;
-
 	}
 
 	@Override
@@ -183,7 +180,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			e.printStackTrace();
 		} finally {
 			if (statement != null) {
-
 				try {
 					statement.close();
 				} catch (SQLException e) {
@@ -198,6 +194,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		if (expenseList.isEmpty()) {
 			throw new ExpenseRecordNotFoundException("Transaction not found");
 		}
+
 		return expenseList;
 	}
 
@@ -232,7 +229,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 		finally {
 			if (statement != null) {
-
 				try {
 					statement.close();
 				} catch (SQLException e) {
@@ -243,6 +239,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			ModelDAO.closeConnection();
 
 		}
+
 		if (expenseList.isEmpty()) {
 			throw new UserNotFoundException("User not found, Please check user id ");
 		}
@@ -279,12 +276,10 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-
 			}
 			ModelDAO.closeConnection();
 		}
 		return expenseList;
-
 	}
 
 	@Override
