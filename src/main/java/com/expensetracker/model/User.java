@@ -19,7 +19,20 @@ public class User {
 		this.password = password;
 		
 	}
-
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+		
+	}
+	public User(int userId,String name, String email, String password) {
+		super();
+		this.userid = userId;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		
+	}
 
 	public String getName() {
 		return name;
