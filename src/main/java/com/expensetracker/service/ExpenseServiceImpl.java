@@ -46,8 +46,8 @@ public class ExpenseServiceImpl implements IExpenseService {
 	}
 
 	@Override
-	public List<Expense> getTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException {
-		return expenseRepository.findTransactionByDate(date);
+	public List<Expense> getTransactionByDate(LocalDate date, int userId) throws ExpenseRecordNotFoundException {
+		return expenseRepository.findTransactionByDate(date, userId);
 	}
 
 	@Override

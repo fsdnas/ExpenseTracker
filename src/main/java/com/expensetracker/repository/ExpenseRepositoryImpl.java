@@ -149,7 +149,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 	}
 
 	@Override
-	public List<Expense> findTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException {
+	public List<Expense> findTransactionByDate(LocalDate date, int userId) throws ExpenseRecordNotFoundException {
 		PreparedStatement statement = null;
 		Connection connection = ModelDAO.openConnection();
 		ResultSet resultSet = null;
@@ -157,8 +157,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 		try {
 			statement = connection.prepareStatement(Queries.FINDTRANSACTIONBYDATEQUERY);
-			statement.setString(1, date.toString() + "%");
-
+			statement.setInt(1, userId);
+			statement.setString(2, date.toString() + "%");
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {

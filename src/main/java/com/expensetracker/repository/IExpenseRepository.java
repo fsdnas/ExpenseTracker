@@ -18,7 +18,7 @@ public interface IExpenseRepository {
 
 	List<Expense> findTransactionById(int transactionId) throws ExpenseRecordNotFoundException;
 
-	List<Expense> findTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException;
+	List<Expense> findTransactionByDate(LocalDate date, int userId) throws ExpenseRecordNotFoundException;
 
 	List<Expense> findTransactionByUser(int userId) throws UserNotFoundException;
 

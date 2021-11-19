@@ -15,7 +15,7 @@ public class Queries {
 	public static final String UPDATETRANSACTIONQUERY = "UPDATE expense SET ?=?,?=? WHERE transactionid = ?";
 	public static final String DELETETRANSACTIONQUERY = "DELETE FROM expense WHERE transactionid = ?";
 	public static final String FINDTRANSACTIONBYIDQUERY = "SELECT * FROM expense WHERE transactionid = ?";
-	public static final String FINDTRANSACTIONBYDATEQUERY = "SELECT * FROM expense WHERE date like ?";
+	public static final String FINDTRANSACTIONBYDATEQUERY = "SELECT * FROM expense WHERE userid = ? AND date like ?";
 	public static final String FINDTRANSACTIONBYUSERQUERY = "SELECT * FROM expense WHERE userid = ?";
 	public static final String FINDALLTRANSACTIONSQUERY = "SELECT * FROM expense";
 	

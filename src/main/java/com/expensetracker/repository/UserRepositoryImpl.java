@@ -182,4 +182,33 @@ public class UserRepositoryImpl implements IUserRepository {
 		return users;
 	}
 
+	@Override
+	public void deleteUser(int userId) throws UserNotFoundException {
+		connection = ModelDAO.openConnection();
+		PreparedStatement statement = null;
+
+		try {
+			statement = connection.prepareStatement(Queries.DELETEUSERQUERY);
+			statement.setInt(1, userId);
+			int updateCount = statement.executeUpdate();
+
+			if (updateCount == 0) {
+				throw new UserNotFoundException();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			ModelDAO.closeConnection();
+		}
+		
+	}
+
 }

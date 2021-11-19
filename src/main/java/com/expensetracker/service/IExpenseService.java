@@ -15,7 +15,7 @@ public interface IExpenseService {
 
 	
 	List<Expense> getTransactionById(int transaction) throws ExpenseRecordNotFoundException;
-	List<Expense> getTransactionByDate(LocalDate date) throws ExpenseRecordNotFoundException;
+	List<Expense> getTransactionByDate(LocalDate date, int userId) throws ExpenseRecordNotFoundException;
 	List<Expense> findTransactionByUser(int userId)throws UserNotFoundException;
 	List<Expense> findAllTransaction();
 	

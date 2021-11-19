@@ -13,6 +13,8 @@ public interface IUserRepository {
 
 	void updateUser(String name, String email) throws UserNotFoundException;
 
+	void deleteUser(int userId) throws UserNotFoundException;
+
 	User findUserById(int userId) throws UserNotFoundException;
 
 	List<User> findAllUser();
