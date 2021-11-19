@@ -199,6 +199,9 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				expenseList.add(expense);
 
 			}
+			if (expenseList.isEmpty()) {
+				throw new ExpenseRecordNotFoundException("Transaction not found");
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,10 +216,6 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 			ModelDAO.closeConnection();
 
-		}
-
-		if (expenseList.isEmpty()) {
-			throw new ExpenseRecordNotFoundException("Transaction not found");
 		}
 
 		return expenseList;

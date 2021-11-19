@@ -37,6 +37,11 @@ public class User {
 		this.password = password;
 
 	}
+	public User(int userId) {
+		super();
+		this.userid = userId;
+
+	}
 
 	public User(int userId, String name, String email, String password) {
 		super();
@@ -46,6 +51,7 @@ public class User {
 		this.password = password;
 
 	}
+	
 
 	/**
 	 * 
