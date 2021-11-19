@@ -1,14 +1,15 @@
+/**
+ * 
+ * @author SnehangshuBiswas
+ *
+ */
+
 package com.expensetracker.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * 
- * @author SnehangshuBiswas
- *
- */
 public class ModelDAO {
 	static Connection connection = null;
 

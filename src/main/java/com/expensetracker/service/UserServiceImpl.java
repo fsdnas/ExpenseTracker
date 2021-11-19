@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author SnehangshuBiswas
+ * @version 1.0
+ */
+
 package com.expensetracker.service;
 
 import java.util.List;
@@ -6,11 +12,6 @@ import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.User;
 import com.expensetracker.repository.UserRepositoryImpl;
 
-/**
- * 
- * @author SnehangshuBiswas
- * @version 1.0
- */
 public class UserServiceImpl implements IUserService {
 	UserRepositoryImpl userRepository = new UserRepositoryImpl();
 

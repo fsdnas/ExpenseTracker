@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Nayeem & SahabJaiswal
+ * @version 1.0
+ */
+
 package com.expensetracker.service;
 
 import java.time.LocalDate;
@@ -11,11 +17,6 @@ import com.expensetracker.model.Expense;
 import com.expensetracker.repository.ExpenseRepositoryImpl;
 import com.expensetracker.repository.IExpenseRepository;
 
-/**
- * 
- * @author Nayeem & SahabJaiswal
- * @version 1.0
- */
 public class ExpenseServiceImpl implements IExpenseService {
 	IExpenseRepository expenseRepository = new ExpenseRepositoryImpl();
 
@@ -60,7 +61,7 @@ public class ExpenseServiceImpl implements IExpenseService {
 	 */
 	@Override
 	public List<Expense> getTransactionById(int transactionId) throws ExpenseRecordNotFoundException {
-		return null;
+		return expenseRepository.findTransactionById(transactionId);
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class ExpenseServiceImpl implements IExpenseService {
 	@Override
 	public List<Expense> getStatsByCategory(int userId) throws UserNotFoundException {
 
-		return null;
+		return expenseRepository.getStatsByCategory(userId);
 	}
 
 	/**
@@ -107,7 +108,7 @@ public class ExpenseServiceImpl implements IExpenseService {
 	@Override
 	public List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException {
 
-		return null;
+		return expenseRepository.getStatsByModeOfTransaction(userId);
 	}
 
 }

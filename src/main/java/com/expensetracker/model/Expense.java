@@ -1,12 +1,13 @@
-package com.expensetracker.model;
-
-import java.time.LocalDate;
-
 /**
  * 
  * @author SnehangshuBiswas
  * @version 1.0
  */
+
+package com.expensetracker.model;
+
+import java.time.LocalDate;
+
 public class Expense {
 
 	private User user;

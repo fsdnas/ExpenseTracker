@@ -1,10 +1,11 @@
-package com.expensetracker.model;
-
 /**
  * 
  * @author SnehangshuBiswas
  * @version 1.0
  */
+
+package com.expensetracker.model;
+
 public class User {
 	private int userid;
 	private String name;
@@ -27,21 +28,23 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		
+
 	}
+
 	public User(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
-		
+
 	}
-	public User(int userId,String name, String email, String password) {
+
+	public User(int userId, String name, String email, String password) {
 		super();
 		this.userid = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		
+
 	}
 
 	/**

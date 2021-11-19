@@ -13,6 +13,10 @@ public class UserNotFoundException extends Exception {
 		super();
 	}
 
+	/**
+	 * 
+	 * @param message
+	 */
 	public UserNotFoundException(String message) {
 		super(message);
 	}

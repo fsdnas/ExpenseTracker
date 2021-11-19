@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author SnehangshuBiswas
+ *
+ */
+
 package com.expensetracker.repository;
 
 import java.sql.Connection;
@@ -10,11 +16,6 @@ import java.util.List;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.User;
 
-/**
- * 
- * @author SnehangshuBiswas
- *
- */
 public class UserRepositoryImpl implements IUserRepository {
 	static Connection connection;
 

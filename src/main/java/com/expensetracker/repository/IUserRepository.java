@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author SahabJaiswal
+ *
+ */
+
 package com.expensetracker.repository;
 
 import java.util.List;
@@ -5,11 +11,6 @@ import java.util.List;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.User;
 
-/**
- * 
- * @author SahabJaiswal
- *
- */
 public interface IUserRepository {
 	/**
 	 * 
