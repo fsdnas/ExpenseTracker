@@ -10,9 +10,17 @@ import java.util.List;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.User;
 
+/**
+ * 
+ * @author SnehangshuBiswas
+ *
+ */
 public class UserRepositoryImpl implements IUserRepository {
 	static Connection connection;
 
+	/**
+	 * @param user
+	 */
 	@Override
 	public void registerUser(User user) {
 		connection = ModelDAO.openConnection();
@@ -38,6 +46,9 @@ public class UserRepositoryImpl implements IUserRepository {
 		}
 	}
 
+	/**
+	 * @param user
+	 */
 	@Override
 	public void loginUser(User user) throws UserNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -79,6 +90,10 @@ public class UserRepositoryImpl implements IUserRepository {
 
 	}
 
+	/**
+	 * @param email
+	 * @param name
+	 */
 	@Override
 	public void updateUser(String email, String name) throws UserNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -109,6 +124,9 @@ public class UserRepositoryImpl implements IUserRepository {
 
 	}
 
+	/**
+	 * @param userId
+	 */
 	@Override
 	public User findUserById(int userId) throws UserNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -148,6 +166,9 @@ public class UserRepositoryImpl implements IUserRepository {
 		return foundUser;
 	}
 
+	/**
+	 * @return
+	 */
 	@Override
 	public List<User> findAllUser() {
 		PreparedStatement statement = null;
@@ -182,6 +203,9 @@ public class UserRepositoryImpl implements IUserRepository {
 		return users;
 	}
 
+	/**
+	 * @param userId
+	 */
 	@Override
 	public void deleteUser(int userId) throws UserNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -208,7 +232,7 @@ public class UserRepositoryImpl implements IUserRepository {
 			}
 			ModelDAO.closeConnection();
 		}
-		
+
 	}
 
 }
