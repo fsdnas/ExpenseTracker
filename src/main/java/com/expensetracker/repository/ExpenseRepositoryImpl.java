@@ -14,9 +14,17 @@ import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.Expense;
 import com.expensetracker.model.User;
 
+/**
+ * 
+ * @author Nayeem & SahabJaiswal
+ *
+ */
 public class ExpenseRepositoryImpl implements IExpenseRepository {
 	static Connection connection;
 
+	/**
+	 * @param expense
+	 */
 	@Override
 	public void addTransaction(Expense expense) {
 		connection = ModelDAO.openConnection();
@@ -47,6 +55,9 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 	}
 
+	/**
+	 * @param transactionId
+	 */
 	@Override
 	public void updateTransaction(int transactionId) throws ExpenseRecordNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -77,6 +88,9 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		}
 	}
 
+	/**
+	 * @param transactionId
+	 */
 	@Override
 	public void deleteTransaction(int transactionId) throws ExpenseRecordNotFoundException {
 		connection = ModelDAO.openConnection();
@@ -107,6 +121,10 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 
 	}
 
+	/**
+	 * @param transactionId
+	 * @return
+	 */
 	@Override
 	public List<Expense> findTransactionById(int transactionId) throws ExpenseRecordNotFoundException {
 		PreparedStatement statement = null;
@@ -148,6 +166,11 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		return expenseList;
 	}
 
+	/**
+	 * @param date
+	 * @param userId
+	 * @return
+	 */
 	@Override
 	public List<Expense> findTransactionByDate(LocalDate date, int userId) throws ExpenseRecordNotFoundException {
 		PreparedStatement statement = null;
@@ -198,6 +221,10 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		return expenseList;
 	}
 
+	/**
+	 * @param userId
+	 * @return
+	 */
 	@Override
 	public List<Expense> findTransactionByUser(int userId) throws UserNotFoundException {
 		PreparedStatement statement = null;
@@ -247,6 +274,9 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		return expenseList;
 	}
 
+	/**
+	 * @return
+	 */
 	@Override
 	public List<Expense> findAllTransaction() {
 
@@ -282,6 +312,10 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		return expenseList;
 	}
 
+	/**
+	 * @param userId
+	 * @return
+	 */
 	@Override
 	public List<Expense> getStatsByCategory(int userId) throws UserNotFoundException {
 		PreparedStatement statement = null;
@@ -327,6 +361,10 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 		return expenseList;
 	}
 
+	/**
+	 * @param userId
+	 * @return
+	 */
 	@Override
 	public List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException {
 
