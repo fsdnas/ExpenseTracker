@@ -60,13 +60,16 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 	 * @param transactionId
 	 */
 	@Override
-	public void updateTransaction(int transactionId) throws ExpenseRecordNotFoundException {
+	public void updateTransaction(Expense expense) throws ExpenseRecordNotFoundException {
 		connection = ModelDAO.openConnection();
 		PreparedStatement statement = null;
 
 		try {
 			statement = connection.prepareStatement(Queries.UPDATETRANSACTIONQUERY);
-			statement.setInt(1, transactionId);
+			statement.setString(1, expense.getCategory());
+			statement.setDouble(2, expense.getAmount());
+			statement.setInt(3, expense.getId());
+			
 			int count = statement.executeUpdate();
 
 			if (count == 0) {

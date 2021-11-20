@@ -1,7 +1,9 @@
 package com.expensetracker.client;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import com.expensetracker.exceptions.ExpenseRecordNotFoundException;
 import com.expensetracker.exceptions.UserNotFoundException;
 import com.expensetracker.model.Expense;
 import com.expensetracker.model.User;
@@ -51,16 +53,15 @@ public class Client {
 				System.out.println("Add Transaction PRESS 1");
 				System.out.println("Update Transaction PRESS 2");
 				System.out.println("Delete Transaction PRESS 3");
-				System.out.println("Update Transaction PRESS 4");
-				System.out.println("Get Transaction By Date PRESS 5");
-				System.out.println("Get Transaction By User PRESS 6");
-				System.out.println("Get Category statistics PRESS 7");
-				System.out.println("Get mode of transaction stats By  PRESS 8");
+				System.out.println("Get Transaction By Date PRESS 4");
+				System.out.println("Get Transaction By User PRESS 5");
+				System.out.println("Get Category statistics PRESS 6");
+				System.out.println("Get mode of transaction stats By  PRESS 7");
 
 				int input = scanner.nextInt();
 				switch (input) {
 				case 0:
-					expenseService.findAllTransaction();
+					System.out.println(expenseService.findAllTransaction());
 					break;
 				case 1:
 					System.out.println("Enter User Id");
@@ -84,19 +85,65 @@ public class Client {
 
 					break;
 				case 2:
-					expenseService.findAllTransaction();
+					System.out.println("Enter transaction Id : ");
+					int transactionId = scanner.nextInt();
+					System.out.println("Enter category fro update : ");
+					String updateCategory = scanner.next();
+					System.out.println("Enter amount for update : ");
+					double updateAmount = scanner.nextDouble();
+
+					Expense newExpense = new Expense();
+					newExpense.setId(transactionId);
+					newExpense.setCategory(updateCategory);
+					newExpense.setAmount(updateAmount);
+
+					expenseService.updateTransaction(newExpense);
 					break;
 				case 3:
+					System.out.println("Enter transaction Id to delete :");
+					int transactionIdForDelete = scanner.nextInt();
+
+					expenseService.deleteTransaction(transactionIdForDelete);
+					break;
+				case 4:
+					System.out.println("Enter transaction date(yyyy-MM-dd) : ");
+					LocalDate date = LocalDate.parse(scanner.next());
+					System.out.println("Enter your user Id : ");
+					int userId = scanner.nextInt();
+					try {
+						System.out.println(expenseService.getTransactionByDate(date, userId));
+					} catch (ExpenseRecordNotFoundException e) {
+						System.out.println("No transaction found for the specified user and date");
+					}
+					break;
+				case 5:
+					System.out.println("Enter user Id : ");
+					int userID = scanner.nextInt();
+					try {
+						System.out.println(expenseService.findTransactionByUser(userID));
+					} catch (UserNotFoundException e) {
+						System.out.println("No transaction found for the specified user");
+					}
+					break;
+				case 6:
+					System.out.println("Enter user Id : ");
+					int userIdFromInput = scanner.nextInt();
+					try {
+						expenseService.getStatsByCategory(userIdFromInput);
+					} catch (UserNotFoundException e) {
+						System.out.println("No records found for the specified user");
+					}
+					break;
+				case 7:
+					
 					expenseService.findAllTransaction();
 					break;
-
 				default:
 					break;
 				}
 
 				break;
-
-			case 2:
+			case 2: {
 				System.out.println("-----------------------------");
 				System.out.println("\t" + "Register User" + "\t" + "\t");
 				System.out.println("-----------------------------");
@@ -111,7 +158,7 @@ public class Client {
 				userService.registerUser(registerUser);
 				System.out.println("Registration Successfully");
 				break;
-
+			}
 			default:
 				System.exit(0);
 				break;

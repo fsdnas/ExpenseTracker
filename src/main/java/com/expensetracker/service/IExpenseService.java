@@ -30,7 +30,7 @@ public interface IExpenseService {
 	 * 
 	 * @param transactionId
 	 */
-	void updateTransaction(int transactionId);
+	void updateTransaction(Expense expense);
 
 	/**
 	 * 
