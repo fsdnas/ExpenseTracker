@@ -135,8 +135,13 @@ public class Client {
 					}
 					break;
 				case 7:
-					
-					expenseService.findAllTransaction();
+					System.out.println("Enter your userId : ");
+					int userIDFromUser = scanner.nextInt();
+					try {
+						expenseService.getStatsByModeOfTransaction(userIDFromUser);
+					} catch (UserNotFoundException e) {
+						e.printStackTrace();
+					}
 					break;
 				default:
 					break;
