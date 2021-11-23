@@ -60,13 +60,16 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 	 * @param transactionId
 	 */
 	@Override
-	public void updateTransaction(int transactionId) throws ExpenseRecordNotFoundException {
+	public void updateTransaction(Expense expense) throws ExpenseRecordNotFoundException {
 		connection = ModelDAO.openConnection();
 		PreparedStatement statement = null;
 
 		try {
 			statement = connection.prepareStatement(Queries.UPDATETRANSACTIONQUERY);
-			statement.setInt(1, transactionId);
+			statement.setString(1, expense.getCategory());
+			statement.setDouble(2, expense.getAmount());
+			statement.setInt(3, expense.getId());
+
 			int count = statement.executeUpdate();
 			
 			if (count == 0) {
@@ -367,8 +370,45 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 	 */
 	@Override
 	public List<Expense> getStatsByModeOfTransaction(int userId) throws UserNotFoundException {
+		PreparedStatement statement = null;
+		Connection connection = ModelDAO.openConnection();
+		ResultSet resultSet = null;
+		List<Expense> expenseList = new ArrayList<>();
+		try {
+			statement = connection.prepareStatement(Queries.MODEOFTRANSACTIONSTATSQUERY);
+			statement.setInt(1, userId);
+			statement.setInt(2, userId);
+			resultSet = statement.executeQuery();
+			Expense ModeOfTransactionStats = null;
+			while (resultSet.next()) {
+				ModeOfTransactionStats = new Expense();
+				ModeOfTransactionStats.setModeOfTransaction(resultSet.getString("ModeOfTransaction"));
+				ModeOfTransactionStats.setAmount(resultSet.getDouble("amount"));
+				ModeOfTransactionStats.setPercentage(resultSet.getFloat("percentage"));
+				expenseList.add(ModeOfTransactionStats);
 
-		return null;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			ModelDAO.closeConnection();
+		}
+		if (expenseList.isEmpty()) {
+			throw new UserNotFoundException("User not found, Please check user id ");
+		}
+
+		return expenseList;
+
 	}
 
 }

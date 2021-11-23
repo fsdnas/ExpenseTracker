@@ -46,9 +46,9 @@ public class ExpenseServiceImpl implements IExpenseService {
 	 * @param transactionId
 	 */
 	@Override
-	public void updateTransaction(int transactionId) {
+	public void updateTransaction(Expense expense) {
 		try {
-			expenseRepository.updateTransaction(transactionId);
+			expenseRepository.updateTransaction(expense);
 		} catch (ExpenseRecordNotFoundException e) {
 			e.printStackTrace();
 		}

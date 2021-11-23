@@ -33,7 +33,7 @@ public interface IExpenseRepository {
 	 * @param transactionId
 	 * @throws ExpenseRecordNotFoundException
 	 */
-	void updateTransaction(int transactionId) throws ExpenseRecordNotFoundException;
+	void updateTransaction(Expense expense) throws ExpenseRecordNotFoundException;
 
 	/**
 	 * 
