@@ -68,7 +68,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement = connection.prepareStatement(Queries.UPDATETRANSACTIONQUERY);
 			statement.setInt(1, transactionId);
 			int count = statement.executeUpdate();
-
+			
 			if (count == 0) {
 				throw new ExpenseRecordNotFoundException("TransactionId not found, Please check the id and try again");
 			}

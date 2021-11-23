@@ -12,7 +12,7 @@ public class Queries {
 	// Queries for Expense table
 
 	public static final String ADDTRANSACTIONQUERY = "INSERT INTO expense (userid, type, category, modeoftransaction, amount, date) values(?,?,?,?,?, NOW())";
-	public static final String UPDATETRANSACTIONQUERY = "UPDATE expense SET ?=?,?=? WHERE transactionid = ?";
+	public static final String UPDATETRANSACTIONQUERY = "UPDATE expense SET category=?,amount=? WHERE transactionid = ?";
 	public static final String DELETETRANSACTIONQUERY = "DELETE FROM expense WHERE transactionid = ?";
 	public static final String FINDTRANSACTIONBYIDQUERY = "SELECT * FROM expense WHERE transactionid = ?";
 	public static final String FINDTRANSACTIONBYDATEQUERY = "SELECT * FROM expense WHERE userid = ? AND date like ?";
