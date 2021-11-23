@@ -42,8 +42,17 @@ public class Expense {
 
 	@Override
 	public String toString() {
-		return "Expense [user=" + user + ", type=" + type + ", category=" + category + ", modeOfTransaction="
-				+ modeOfTransaction + ", date=" + date + ", amount=" + amount + ", id=" + transactionId + "]";
+		return "Expense [type=" + type + ", category=" + category + ", modeOfTransaction="
+				+ modeOfTransaction + ", date=" + date + ", amount=" + amount + ", transactiontId=" + transactionId + "]";
+	}
+
+	public String display() {
+		return "Expense [modeOfTransaction="
+				+ modeOfTransaction + ", amount=" + amount + ", percentage=" + percentage + "]";
+	}
+
+	public String categoryDisplay() {
+		return "Expense [category=" + category + ", amount=" + amount + ", percentage=" + percentage + "]";
 	}
 
 	/**

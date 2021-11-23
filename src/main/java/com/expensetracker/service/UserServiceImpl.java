@@ -27,8 +27,8 @@ public class UserServiceImpl implements IUserService {
 	 * @param user
 	 */
 	@Override
-	public void loginUser(User user) throws UserNotFoundException {
-		userRepository.loginUser(user);
+	public User loginUser(User user) throws UserNotFoundException {
+		return userRepository.loginUser(user);
 	}
 
 	/**

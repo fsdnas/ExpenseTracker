@@ -17,7 +17,7 @@ public class Queries {
 	public static final String FINDTRANSACTIONBYIDQUERY = "SELECT * FROM expense WHERE transactionid = ?";
 	public static final String FINDTRANSACTIONBYDATEQUERY = "SELECT * FROM expense WHERE userid = ? AND date like ?";
 	public static final String FINDTRANSACTIONBYUSERQUERY = "SELECT * FROM expense WHERE userid = ?";
-	public static final String FINDALLTRANSACTIONSQUERY = "SELECT * FROM expense";
+	public static final String FINDALLTRANSACTIONSQUERY = "SELECT type,category,modeoftransaction,amount FROM expense";
 
 	// -----------------------------------------------------------------------------
 

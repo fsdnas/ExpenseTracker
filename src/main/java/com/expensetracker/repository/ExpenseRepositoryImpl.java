@@ -254,7 +254,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		finally {
@@ -262,7 +262,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 
 			}
@@ -291,6 +291,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement = connection.prepareStatement(Queries.FINDALLTRANSACTIONSQUERY);
 			resultset = statement.executeQuery();
 			while (resultset.next()) {
+
 				String type = resultset.getString("type");
 				String category = resultset.getString("category");
 				String modeOfTransaction = resultset.getString("modeOfTransaction");
@@ -301,13 +302,13 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				expenseList.add(expense);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (Exception e2) {
-					e2.printStackTrace();
+					System.out.println(e2.getMessage());
 				}
 			}
 			ModelDAO.closeConnection();
@@ -341,7 +342,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		finally {
@@ -350,7 +351,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 
 			}
@@ -390,15 +391,13 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} finally {
 			if (statement != null) {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 			ModelDAO.closeConnection();

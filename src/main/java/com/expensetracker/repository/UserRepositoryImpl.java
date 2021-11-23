@@ -51,9 +51,10 @@ public class UserRepositoryImpl implements IUserRepository {
 	 * @param user
 	 */
 	@Override
-	public void loginUser(User user) throws UserNotFoundException {
+	public User loginUser(User user) throws UserNotFoundException {
 		connection = ModelDAO.openConnection();
 		PreparedStatement statement = null;
+		User foundUser = null;
 
 		try {
 			statement = connection.prepareStatement(Queries.LOGINUSERQUERY);
@@ -62,7 +63,7 @@ public class UserRepositoryImpl implements IUserRepository {
 
 			ResultSet result = statement.executeQuery();
 
-			User foundUser = null;
+			
 
 			while (result.next()) {
 				foundUser = new User();
@@ -73,7 +74,7 @@ public class UserRepositoryImpl implements IUserRepository {
 			}
 
 			if (foundUser == null) {
-				throw new UserNotFoundException();
+				throw new UserNotFoundException("User not found");
 			}
 
 		} catch (SQLException e) {
@@ -88,7 +89,7 @@ public class UserRepositoryImpl implements IUserRepository {
 			}
 			ModelDAO.closeConnection();
 		}
-
+		return foundUser;
 	}
 
 	/**

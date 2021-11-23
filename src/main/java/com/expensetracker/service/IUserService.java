@@ -23,7 +23,7 @@ public interface IUserService {
 	 * @param user
 	 * @throws UserNotFoundException
 	 */
-	void loginUser(User user) throws UserNotFoundException;
+	User loginUser(User user) throws UserNotFoundException;
 
 	/**
 	 * 
