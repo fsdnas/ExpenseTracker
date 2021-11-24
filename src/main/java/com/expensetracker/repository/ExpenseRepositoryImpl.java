@@ -250,6 +250,8 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				LocalDate foundDate = LocalDate.parse(resultSet.getString("date").split("\\s")[0], formatter);
 				findTransaction.setDate(foundDate);
+				
+				
 				expenseList.add(findTransaction);
 			}
 

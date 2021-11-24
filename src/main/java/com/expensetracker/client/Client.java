@@ -49,8 +49,11 @@ public class Client {
 					break;
 				}
 
+				System.out.println();
+				System.out.println();
 				System.out.println("Welcome " + user.getEmail());
 
+				System.out.println();
 				System.out.println("Add Transaction PRESS 1");
 				System.out.println("Update Transaction PRESS 2");
 				System.out.println("Delete Transaction PRESS 3");
@@ -141,11 +144,14 @@ public class Client {
 						System.out.println(e.getMessage());
 					}
 					break;
+
 				default:
+
 					break;
 				}
 
 				break;
+
 			case 2: {
 				System.out.println("-----------------------------");
 				System.out.println("\t" + "Register User" + "\t" + "\t");
