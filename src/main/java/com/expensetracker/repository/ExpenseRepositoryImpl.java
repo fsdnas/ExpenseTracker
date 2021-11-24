@@ -71,7 +71,7 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			statement.setInt(3, expense.getId());
 
 			int count = statement.executeUpdate();
-			
+
 			if (count == 0) {
 				throw new ExpenseRecordNotFoundException("TransactionId not found, Please check the id and try again");
 			}
@@ -243,15 +243,14 @@ public class ExpenseRepositoryImpl implements IExpenseRepository {
 			Expense findTransaction = null;
 			while (resultSet.next()) {
 				findTransaction = new Expense();
-				findTransaction.setId(resultSet.getInt("userid"));
+				findTransaction.setId(resultSet.getInt("transactionid"));
 				findTransaction.setType(resultSet.getString("type"));
 				findTransaction.setCategory(resultSet.getString("category"));
 				findTransaction.setModeOfTransaction(resultSet.getString("modeoftransaction"));
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				LocalDate foundDate = LocalDate.parse(resultSet.getString("date").split("\\s")[0], formatter);
 				findTransaction.setDate(foundDate);
-				
-				
+				findTransaction.setAmount(resultSet.getDouble("amount"));
 				expenseList.add(findTransaction);
 			}
 
