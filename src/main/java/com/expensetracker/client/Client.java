@@ -60,10 +60,9 @@ public class Client {
 				System.out.println("Get mode of transaction stats By  PRESS 7");
 
 				int input = scanner.nextInt();
+
 				switch (input) {
-
 				case 1:
-
 					System.out.println("Enter type(credit/debit)");
 					String type = scanner.next();
 
@@ -112,7 +111,6 @@ public class Client {
 					}
 					break;
 				case 5:
-
 					try {
 						System.out.println(expenseService.findTransactionByUser(foundUser.getUserid()));
 					} catch (UserNotFoundException e) {
@@ -120,7 +118,6 @@ public class Client {
 					}
 					break;
 				case 6:
-
 					try {
 						List<Expense> categoryExpense = expenseService.getStatsByCategory(foundUser.getUserid());
 						for (Expense expense1 : categoryExpense) {
@@ -145,7 +142,6 @@ public class Client {
 					break;
 				}
 
-				break;
 			case 2: {
 				System.out.println("-----------------------------");
 				System.out.println("\t" + "Register User" + "\t" + "\t");
